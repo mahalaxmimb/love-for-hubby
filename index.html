@@ -16,41 +16,44 @@
       position: relative;
     }
 
-    .content {
+    .container {
       text-align: center;
-      z-index: 2;
+      position: relative;
     }
 
     h1 {
       color: white;
-      font-size: 28px;
+      margin-bottom: 40px;
     }
 
-    #yesBtn, #noBtn {
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
       padding: 12px 25px;
       font-size: 18px;
       border: none;
       border-radius: 30px;
       cursor: pointer;
-      margin: 20px;
       transition: 0.2s;
-      position: absolute;
     }
 
     #yesBtn {
       background: #ff4d6d;
       color: white;
-      left: 45%;
-      top: 55%;
     }
 
     #noBtn {
       background: #444;
       color: white;
+      position: relative;
     }
 
     #message {
-      margin-top: 20px;
+      margin-top: 30px;
       font-size: 20px;
       color: white;
       font-weight: bold;
@@ -60,18 +63,24 @@
 
 <body>
 
-  <div class="content">
+  <div class="container">
     <h1>Will you take me on a romantic date this weekend? 💕</h1>
+
+    <div class="buttons">
+      <button id="yesBtn" onclick="sayYes()">YES 💖</button>
+      <button id="noBtn">NO 🙈</button>
+    </div>
+
     <div id="message"></div>
   </div>
-
-  <button id="yesBtn" onclick="sayYes()">YES 💖</button>
-  <button id="noBtn">NO 🙈</button>
 
 <script>
   const noBtn = document.getElementById("noBtn");
 
   function moveButton() {
+    // Change to absolute only when hovered
+    noBtn.style.position = "absolute";
+
     const windowWidth = window.innerWidth - noBtn.offsetWidth;
     const windowHeight = window.innerHeight - noBtn.offsetHeight;
 
@@ -83,15 +92,12 @@
   }
 
   noBtn.addEventListener("mouseover", moveButton);
-  noBtn.addEventListener("touchstart", moveButton); // for mobile
+  noBtn.addEventListener("touchstart", moveButton);
 
   function sayYes() {
     document.getElementById("message").innerHTML =
       "I knew it 😍 You can never say no to me!";
   }
-
-  // Initial random position
-  moveButton();
 </script>
 
 </body>
