@@ -78,14 +78,16 @@
   const noBtn = document.getElementById("noBtn");
 
   function moveButton() {
-    // Change to absolute only when hovered
-    noBtn.style.position = "absolute";
+    noBtn.style.position = "fixed"; // fixed to viewport (better than absolute)
 
-    const windowWidth = window.innerWidth - noBtn.offsetWidth;
-    const windowHeight = window.innerHeight - noBtn.offsetHeight;
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
 
-    const randomX = Math.random() * windowWidth;
-    const randomY = Math.random() * windowHeight;
+    const maxX = window.innerWidth - btnWidth - 10;
+    const maxY = window.innerHeight - btnHeight - 10;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
 
     noBtn.style.left = randomX + "px";
     noBtn.style.top = randomY + "px";
@@ -102,3 +104,4 @@
 
 </body>
 </html>
+
